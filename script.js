@@ -66,6 +66,7 @@ const projects = [
     description: 'A mobile-focused productivity app designed to help users track tasks, manage responsibilities, and stay organized across devices.',
     tags: ['App', 'Google Sheets', 'Mobile'],
     url: '#',
+    github: 'https://github.com/Khush5476/To-Do-List-App',
     overview: 'MyApp is a practical productivity project created to solve a real-world need: helping users organize tasks and stay on top of responsibilities. It combines a clean mobile experience with spreadsheet-backed syncing, making it easy to manage information in a flexible and accessible way. This project demonstrates my ability to build tools that are useful, simple, and designed around day-to-day user needs.',
     features: [
       'Task management workflow for daily organization',
