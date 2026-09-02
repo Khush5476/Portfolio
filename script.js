@@ -56,7 +56,7 @@ const projects = [
     ],
     images: [
       'Spotify Clone liked song.png',
-      'Spotify Clone Add song.png'
+      'Spotify Clone Add Song.png'
     ]
   },
   {
