@@ -113,7 +113,7 @@ const projects = [
       'Hands-on hardware design with practical problem solving'
     ],
     images: [
-      'minibot preview.jpg',
+      'Minibot preview.jpg',
       'https://images.unsplash.com/photo-1555618563-8761c36c43f8?auto=format&fit=crop&w=1200&q=80'
     ]
   }
