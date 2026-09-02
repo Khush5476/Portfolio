@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniBot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="mini-bot-page">
+  <div class="ambient-nodes" aria-hidden="true"></div>
+  <div class="background-layer"></div>
+  <div class="background-layer layer-two"></div>
+
+  <main class="mini-bot-shell">
+    <div class="mini-bot-header reveal">
+      <a href="index.html">← Back to portfolio</a>
+      <a class="mini-bot-github" href="https://github.com/Khush5476/Minbot-V3-Code" target="_blank" rel="noreferrer">View GitHub Code</a>
+    </div>
+
+    <header class="mini-bot-hero reveal">
+      <p class="eyebrow">Robotics Competition</p>
+      <h1>MiniBot</h1>
+      <p class="mini-bot-intro">
+        I have made 2 iterations of a 6x6x6 inch competition robot optimized to stack and flip glowing cubes in
+        <strong>Cubic Chaos</strong>, a quantum-themed arena game.
+      </p>
+    </header>
+
+    <section class="mini-bot-game reveal">
+      <div class="section-heading">
+        <p class="eyebrow">The Game</p>
+        <h2>Cubic Chaos</h2>
+      </div>
+
+      <div class="mini-bot-game-layout">
+        <div class="arena-photo">
+          <img src="game_arena.png" alt="Cubic Chaos arena" />
+        </div>
+
+        <div class="arena-copy">
+          <h3>The Challenge</h3>
+          <p>
+            Cubic Chaos is set in a futuristic quantum arena where robots must manipulate glowing cubes to score points.
+            Each robot must fit inside a 6x6x6 inch cube at the start of a match, and teams earn points by flipping cubes
+            to their color and stacking them in the endgame for bonus value.
+          </p>
+          <p class="mini-bot-summary">
+            Across three competitions, I redesigned and rebuilt my robot by learning what worked, what did not, and how to improve it each time.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="mini-bot-cards">
+      <article class="mini-bot-card iteration-card primary reveal">
+        <div class="card-top-row">
+          <div class="card-badges">
+            <span class="chip">Competition 1</span>
+            <span class="chip chip-soft">Finalist</span>
+          </div>
+          <div class="result-icon" aria-label="Trophy">🏆</div>
+        </div>
+
+        <div class="iteration-card-inner">
+          <div class="iteration-copy">
+            <h3>Robot Design 1</h3>
+            <p class="feature-tag feature-tag-purple">Stacking</p>
+            <p>
+              First iteration focused on flipping cubes while also storing them so opponents could not flip them back.
+              I designed it so it could carry four cubes in a square formation, and in the endgame the servo system would
+              allow stacked cubes to count as two stacks of two cubes.
+            </p>
+
+            <div class="spec-grid">
+              <div class="spec-box"><span>⚙️ Drive</span><strong>4 wheel tank drive</strong></div>
+              <div class="spec-box"><span>🧭 Servo</span><strong>Servo Motor - MG90</strong></div>
+              <div class="spec-box"><span>🔩 Drive Motor</span><strong>Geared Motor N20</strong></div>
+              <div class="spec-box"><span>🔋 Battery</span><strong>2 pcs 18650 lithium ion</strong></div>
+            </div>
+          </div>
+
+          <div class="robot-image-box">
+            <img src="minibot_v1.png" alt="MiniBot version 1" />
+          </div>
+        </div>
+
+        <div class="result-card full-width-result">
+          <div class="result-header">
+            <div class="result-icon small" aria-label="Trophy">🏆</div>
+            <span>Competition Result</span>
+          </div>
+          <strong>Finalist</strong>
+          <p>I had the highest points per game on average throughout the competition.</p>
+        </div>
+      </article>
+
+      <article class="mini-bot-card iteration-card secondary reveal">
+        <div class="card-top-row">
+          <div class="card-badges">
+            <span class="chip">Iteration 2</span>
+            <span class="chip chip-soft">Improved Build</span>
+          </div>
+          <div class="result-icon" aria-label="Robot upgrade">⚙️</div>
+        </div>
+
+        <div class="iteration-card-inner">
+          <div class="iteration-copy">
+            <h3>Robot Design 2</h3>
+            <p class="feature-tag feature-tag-purple">Climb</p>
+            <p>
+              The second iteration focused on tightening the robot’s footprint, improving cube handling, and making the stacking process
+              more consistent under pressure. I added a climb mechanism at the bottom of the robot that gave extra points in the endgame,
+              which helped improve my overall scoring potential during matches.
+            </p>
+
+            <div class="spec-grid">
+              <div class="spec-box"><span>⚙️ Drive</span><strong>4 wheel tank drive</strong></div>
+              <div class="spec-box"><span>🧗 Climb</span><strong>Bottom climb mechanism</strong></div>
+              <div class="spec-box"><span>🔩 Drive Motor</span><strong>Geared Motor N20</strong></div>
+              <div class="spec-box"><span>🔋 Battery</span><strong>2 pcs 18650 lithium ion</strong></div>
+            </div>
+          </div>
+
+          <div class="robot-image-box">
+            <img src="minibot_v2.png" alt="MiniBot version 2" />
+          </div>
+        </div>
+
+        <div class="result-card full-width-result">
+          <div class="result-header">
+            <div class="result-icon small" aria-label="Trophy">🏆</div>
+            <span>Competition Result</span>
+          </div>
+          <strong>Finalist</strong>
+          <p>I improved my robot’s consistency and endgame scoring across the competition.</p>
+        </div>
+      </article>
+
+      <article class="mini-bot-card iteration-card final-design-card reveal">
+        <div class="card-top-row">
+          <div class="card-badges">
+            <span class="chip chip-gold">Final Design</span>
+            <span class="chip chip-soft">Optimized Build</span>
+          </div>
+          <div class="result-icon result-icon-gold" aria-label="Final design">✨</div>
+        </div>
+
+        <div class="iteration-card-inner">
+          <div class="iteration-copy">
+            <h3>Final Design</h3>
+            <p class="feature-tag feature-tag-gold">Better Flipping and Driving</p>
+            <p>
+              The final version of the robot focused on making cube interaction more reliable while also improving mobility and control.
+              I refined the chassis, tuning the drive system and flip mechanism to increase consistency in fast, high-pressure matches.
+            </p>
+
+            <div class="spec-grid">
+              <div class="spec-box"><span>⚙️ Drive</span><strong>6 wheel tank drive</strong></div>
+              <div class="spec-box"><span>🧲 Flip</span><strong>Better flipping</strong></div>
+              <div class="spec-box"><span>🔩 Drive Motor</span><strong>High torque drive</strong></div>
+              <div class="spec-box"><span>🛡️ Stability</span><strong>Anti-flipping</strong></div>
+            </div>
+          </div>
+
+          <div class="robot-image-box final-design-image-box">
+            <img src="final_minibot.webp" alt="Final MiniBot design" />
+          </div>
+        </div>
+
+        <div class="result-card full-width-result gold-result">
+          <div class="result-header">
+            <div class="result-icon small result-icon-gold" aria-label="Build highlights">✨</div>
+            <span>Build Highlights</span>
+          </div>
+          <ul class="highlight-list">
+            <li>Better Flipping</li>
+            <li>Faster and more torque when driving</li>
+            <li>Anti flipping</li>
+            <li>Sleek design</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <section class="mini-bot-learnings reveal">
+      <div class="section-heading">
+        <p class="eyebrow">Reflection</p>
+        <h2>What I Learned Across This Season</h2>
+      </div>
+
+      <div class="learning-grid">
+        <div class="learning-item reveal">
+          <span>01</span>
+          <p>Prioritizing a faster flip mechanism proved more valuable than over-optimizing for stacking, because consistent scoring depended on quick, reliable cube manipulation.</p>
+        </div>
+        <div class="learning-item reveal">
+          <span>02</span>
+          <p>Reducing the size of the flipper made the robot easier to control, improving stability and making the mechanism more precise under pressure.</p>
+        </div>
+        <div class="learning-item reveal">
+          <span>03</span>
+          <p>Adding more wheels increased traction and torque, which made the robot stronger in matchups against other competitors and more stable during aggressive drives.</p>
+        </div>
+        <div class="learning-item reveal">
+          <span>04</span>
+          <p>Making design changes and testing new ideas taught me more than stubbornly sticking to one concept, showing that iteration is one of the fastest ways to improve.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const revealItems = document.querySelectorAll('.reveal');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay = prefersReducedMotion ? '0ms' : `${Math.min(index * 70, 420)}ms`;
+      });
+
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealItems.forEach(item => item.classList.add('visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px' });
+
+      revealItems.forEach(item => observer.observe(item));
+    })();
+
+    const glowingElements = document.querySelectorAll('.mini-bot-card, .learning-item, .mini-bot-game-layout');
+
+    glowingElements.forEach((element) => {
+      element.addEventListener('pointermove', (event) => {
+        const rect = element.getBoundingClientRect();
+        const x = ((event.clientX - rect.left) / rect.width) * 100;
+        const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+        element.style.setProperty('--pointer-x', `${x}%`);
+        element.style.setProperty('--pointer-y', `${y}%`);
+      });
+
+      element.addEventListener('pointerleave', () => {
+        element.style.setProperty('--pointer-x', '50%');
+        element.style.setProperty('--pointer-y', '50%');
+      });
+    });
+
+    (() => {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const container = document.querySelector('.ambient-nodes');
+      if (!container) return;
+
+      const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+      svg.setAttribute('class', 'ambient-network');
+      svg.setAttribute('viewBox', '0 0 1440 900');
+      svg.setAttribute('preserveAspectRatio', 'none');
+      container.appendChild(svg);
+
+      const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2, active: false };
+      const nodes = [];
+      let frameCount = 0;
+
+      for (let i = 0; i < 16; i += 1) {
+        const node = document.createElement('span');
+        node.className = 'ambient-node';
+        const size = Math.random() * 7 + 6;
+        const x = Math.random() * (window.innerWidth - 140) + 70;
+        const y = Math.random() * (window.innerHeight - 140) + 70;
+
+        node.style.width = `${size}px`;
+        node.style.height = `${size}px`;
+        node.style.left = `${x}px`;
+        node.style.top = `${y}px`;
+        node.dataset.x = String(x);
+        node.dataset.y = String(y);
+        node.dataset.baseX = String(x);
+        node.dataset.baseY = String(y);
+        node.dataset.vx = '0';
+        node.dataset.vy = '0';
+        container.appendChild(node);
+        nodes.push(node);
+      }
+
+      document.addEventListener('pointermove', event => {
+        pointer.x += (event.clientX - pointer.x) * 0.08;
+        pointer.y += (event.clientY - pointer.y) * 0.08;
+        pointer.active = true;
+      });
+
+      document.addEventListener('pointerleave', () => {
+        pointer.active = false;
+      });
+
+      function updateBackground() {
+        frameCount += 1;
+        const lines = [];
+        const maxDistance = 150;
+
+        nodes.forEach(node => {
+          let x = Number(node.dataset.x);
+          let y = Number(node.dataset.y);
+          let vx = Number(node.dataset.vx);
+          let vy = Number(node.dataset.vy);
+
+          const baseX = Number(node.dataset.baseX);
+          const baseY = Number(node.dataset.baseY);
+          const pullX = (baseX - x) * 0.002;
+          const pullY = (baseY - y) * 0.002;
+          vx += pullX;
+          vy += pullY;
+
+          const dx = pointer.x - x;
+          const dy = pointer.y - y;
+          const distance = Math.hypot(dx, dy) || 1;
+
+          if (pointer.active && distance < 210) {
+            const force = (210 - distance) / 210;
+            vx += (dx / distance) * 0.24 * force;
+            vy += (dy / distance) * 0.24 * force;
+          }
+
+          vx *= 0.96;
+          vy *= 0.96;
+          x += vx;
+          y += vy;
+
+          x = Math.max(20, Math.min(window.innerWidth - 20, x));
+          y = Math.max(20, Math.min(window.innerHeight - 20, y));
+
+          node.dataset.x = String(x);
+          node.dataset.y = String(y);
+          node.dataset.vx = String(vx);
+          node.dataset.vy = String(vy);
+          node.style.left = `${x}px`;
+          node.style.top = `${y}px`;
+
+          const glow = pointer.active && distance < 190 ? 0.9 + (1 - distance / 190) * 0.9 : 0.6;
+          node.style.opacity = String(glow);
+          node.style.transform = `translate(-50%, -50%) scale(${0.9 + glow * 0.75})`;
+        });
+
+        for (let i = 0; i < nodes.length; i += 1) {
+          for (let j = i + 1; j < nodes.length; j += 1) {
+            const a = nodes[i];
+            const b = nodes[j];
+            const ax = Number(a.dataset.x);
+            const ay = Number(a.dataset.y);
+            const bx = Number(b.dataset.x);
+            const by = Number(b.dataset.y);
+            const dx = bx - ax;
+            const dy = by - ay;
+            const distance = Math.hypot(dx, dy) || 1;
+
+            if (distance < maxDistance) {
+              const opacity = 1 - distance / maxDistance;
+              lines.push(`<line x1="${ax}" y1="${ay}" x2="${bx}" y2="${by}" stroke="rgba(132, 180, 255, ${0.18 + opacity * 0.42})" stroke-width="${0.6 + opacity * 0.9}" />`);
+            }
+          }
+        }
+
+        if (pointer.active) {
+          nodes.forEach(node => {
+            const x = Number(node.dataset.x);
+            const y = Number(node.dataset.y);
+            const dx = pointer.x - x;
+            const dy = pointer.y - y;
+            const distance = Math.hypot(dx, dy) || 1;
+
+            if (distance < 180) {
+              const opacity = 1 - distance / 180;
+              lines.push(`<line x1="${x}" y1="${y}" x2="${pointer.x}" y2="${pointer.y}" stroke="rgba(164, 214, 255, ${0.08 + opacity * 0.22})" stroke-width="${0.5 + opacity * 0.8}" />`);
+            }
+          });
+        }
+
+        if (pointer.active || frameCount % 4 === 0) {
+          svg.innerHTML = lines.join('');
+        }
+
+        requestAnimationFrame(updateBackground);
+      }
+
+      requestAnimationFrame(updateBackground);
+    })();
+  </script>
+</body>
+</html>
