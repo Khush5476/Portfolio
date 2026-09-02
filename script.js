@@ -116,7 +116,27 @@ const projects = [
       'Minibot preview.jpg',
       'https://images.unsplash.com/photo-1555618563-8761c36c43f8?auto=format&fit=crop&w=1200&q=80'
     ]
-  }
+  },
+    {
+  id: 'portfolio-website',
+  title: 'Personal Portfolio Website',
+  year: '2026',
+  description: 'A personal portfolio website built from scratch to showcase my software, robotics, AI, and engineering projects.',
+  tags: ['Website', 'JavaScript', 'Design'],
+  url: 'index.html',
+  github: 'https://github.com/Khush5476/Portfolio',
+  overview: 'This portfolio website was designed and developed from scratch to showcase my projects, technical experience, and involvement in robotics and software development. It combines responsive web design, interactive animations, project detail pages, and a polished visual interface to create a personal space that represents both my technical and creative work.',
+  features: [
+    'Responsive design optimized for desktop and mobile',
+    'Interactive project showcase with dedicated detail pages',
+    'Custom animations and dynamic visual effects',
+    'Organized presentation of software, AI, and robotics projects'
+  ],
+  images: [
+    'portfolio Preview.png',
+    'portfolio school.png'
+  ]
+}
 ];
 
 const filterContainer = document.getElementById('project-filters');
@@ -174,7 +194,7 @@ function renderProjects(category = 'All') {
         : `project.html?project=${encodeURIComponent(project.id)}`;
 
     card.innerHTML = `
-      ${['ecommerce-admin-viewer', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
+      ${['portfolio-website', 'ecommerce-admin-viewer', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
       <div class="project-card-top">
         <span class="project-label">Featured</span>
         <span>
@@ -474,6 +494,29 @@ function initAmbientBackground() {
   requestAnimationFrame(updateBackground);
 }
 
+/* =========================
+   Contact Card Mouse Glow
+   ========================= */
+
+const contactPanel = document.querySelector('.contact-panel');
+
+if (contactPanel) {
+  contactPanel.addEventListener('mousemove', (event) => {
+    const rect = contactPanel.getBoundingClientRect();
+
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    contactPanel.style.setProperty('--mouse-x', `${x}px`);
+    contactPanel.style.setProperty('--mouse-y', `${y}px`);
+  });
+
+  contactPanel.addEventListener('mouseleave', () => {
+    contactPanel.style.setProperty('--mouse-x', '50%');
+    contactPanel.style.setProperty('--mouse-y', '50%');
+  });
+}
+
 function resolveProjectById(projectId) {
   if (!projectId) return projects[0];
 
@@ -524,6 +567,9 @@ function initProjectDetailPage() {
   projectDetailTitle.textContent = selectedProject.title;
   projectDetailGallery.classList.toggle('todo-gallery', selectedProject.id === 'myapp');
   projectDetailGallery.classList.toggle('ecommerce-gallery', selectedProject.id === 'ecommerce-admin-viewer');
+  projectDetailGallery.classList.toggle('spotify-clone-gallery', selectedProject.id === 'spotify-clone');
+  projectDetailGallery.classList.toggle('photo-gallery-layout', selectedProject.id === 'photo-gallery');
+  projectDetailGallery.classList.toggle('portfolio-website-layout', selectedProject.id === 'portfolio-website');
   projectDetailOverview.textContent = selectedProject.overview;
   projectDetailTags.innerHTML = selectedProject.tags.map(tag => `<span>${tag}</span>`).join('');
   projectDetailFeatures.innerHTML = selectedProject.features.map(feature => `<li>${feature}</li>`).join('');
