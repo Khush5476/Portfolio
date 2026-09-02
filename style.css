@@ -1091,6 +1091,17 @@ body {
   border: 0;
 }
 
+.project-detail-gallery.robotic-hand-layout {
+  grid-template-columns: 1fr;
+}
+
+.project-detail-gallery.robotic-hand-layout img {
+  height: 280px;
+  min-height: 0;
+  object-fit: contain;
+  border: 0;
+}
+
 .project-detail-info {
   display: flex;
   flex-direction: column;

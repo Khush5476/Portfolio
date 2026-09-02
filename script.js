@@ -118,6 +118,26 @@ const projects = [
     ]
   },
     {
+    id: 'robotic-hand',
+    title: 'Robotic Hand',
+    year: '2026',
+    description: 'A work-in-progress robotic hand project focused on developing movement, control, and mechanical functionality. This project is not completed yet and is currently under development.',
+    tags: ['Robotics', 'Hardware', 'Engineering'],
+    url: '#',
+    github: '',
+    overview: 'The Robotic Hand is a work-in-progress engineering project focused on designing and building a functional robotic hand. The current prototype uses dental floss as a tendon-like mechanism connected to servos to control and move the individual fingers. The project is not completed yet and is still being developed and tested. In the future, I plan to add a camera-based computer vision system that can detect my hand movements and translate them into corresponding movements on the robotic hand, allowing the robot to mimic the movement of a real hand.',
+    features: [
+      'Custom robotic hand design and mechanical development',
+      'Motor and movement control systems',
+      'Hands-on hardware engineering and testing',
+      'Ongoing development and iteration toward a completed prototype'
+    ],
+    images: [
+      'robotic hand preview.png',
+      'Robotic Arm Bend.png'
+    ]
+  },
+    {
   id: 'portfolio-website',
   title: 'Personal Portfolio Website',
   year: '2026',
@@ -194,7 +214,7 @@ function renderProjects(category = 'All') {
         : `project.html?project=${encodeURIComponent(project.id)}`;
 
     card.innerHTML = `
-      ${['portfolio-website', 'ecommerce-admin-viewer', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
+      ${['ecommerce-admin-viewer', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery', 'robotic-hand', 'portfolio-website'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
       <div class="project-card-top">
         <span class="project-label">Featured</span>
         <span>
@@ -570,6 +590,7 @@ function initProjectDetailPage() {
   projectDetailGallery.classList.toggle('spotify-clone-gallery', selectedProject.id === 'spotify-clone');
   projectDetailGallery.classList.toggle('photo-gallery-layout', selectedProject.id === 'photo-gallery');
   projectDetailGallery.classList.toggle('portfolio-website-layout', selectedProject.id === 'portfolio-website');
+  projectDetailGallery.classList.toggle('robotic-hand-layout', selectedProject.id === 'robotic-hand');
   projectDetailOverview.textContent = selectedProject.overview;
   projectDetailTags.innerHTML = selectedProject.tags.map(tag => `<span>${tag}</span>`).join('');
   projectDetailFeatures.innerHTML = selectedProject.features.map(feature => `<li>${feature}</li>`).join('');
