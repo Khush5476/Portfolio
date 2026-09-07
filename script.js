@@ -1,4 +1,43 @@
 const projects = [
+    {
+    id: 'mini-bot',
+    title: 'MiniBot',
+    year: '2025-2026',
+    description: 'A competitive robotics minibot designed for precise movement, efficient control, and reliable performance in a fast-paced engineering challenge.',
+    tags: ['Robotics', 'Competition', 'Hardware'],
+    url: '#',
+    overview: 'The Mini-Bot was built as a hands-on robotics project focused on engineering, motion control, and iteration. It combines careful mechanical design with performance testing so the robot can move efficiently, react predictably, and improve through repeated development cycles. This project reflects my interest in physical systems and the process of turning a concept into a working, testable machine.',
+    features: [
+      'Custom robotic build for movement and control',
+      'Engineering focus on precision and efficiency',
+      'Iteration and testing for competitive performance',
+      'Hands-on hardware design with practical problem solving'
+    ],
+    images: [
+      'Minibot preview.jpg',
+      'https://images.unsplash.com/photo-1555618563-8761c36c43f8?auto=format&fit=crop&w=1200&q=80'
+    ]
+  },
+    {
+    id: 'robotic-hand',
+    title: 'Robotic Hand',
+    year: '2026',
+    description: 'A work-in-progress robotic hand project focused on developing movement, control, and mechanical functionality. This project is not completed yet and is currently under development.',
+    tags: ['Robotics', 'Hardware', 'Engineering'],
+    url: '#',
+    github: '#',
+    overview: 'The Robotic Hand is a work-in-progress engineering project focused on designing and building a functional robotic hand. The current prototype uses dental floss as a tendon-like mechanism connected to servos to control and move the individual fingers. The project is not completed yet and is still being developed and tested. In the future, I plan to add a camera-based computer vision system that can detect my hand movements and translate them into corresponding movements on the robotic hand, allowing the robot to mimic the movement of a real hand.',
+    features: [
+      'Custom robotic hand design and mechanical development',
+      'Motor and movement control systems',
+      'Hands-on hardware engineering and testing',
+      'Ongoing development and iteration toward a completed prototype'
+    ],
+    images: [
+      'robotic hand preview.png',
+      'Robotic Arm Bend.png'
+    ]
+  },
   {
     id: 'ecommerce-admin-viewer',
     title: 'E-commerce Admin + User',
@@ -96,45 +135,6 @@ const projects = [
     ],
     images: [
       'Face Tracker preview.png',
-    ]
-  },
-  {
-    id: 'mini-bot',
-    title: 'MiniBot',
-    year: '2025-2026',
-    description: 'A competitive robotics minibot designed for precise movement, efficient control, and reliable performance in a fast-paced engineering challenge.',
-    tags: ['Robotics', 'Competition', 'Hardware'],
-    url: '#',
-    overview: 'The Mini-Bot was built as a hands-on robotics project focused on engineering, motion control, and iteration. It combines careful mechanical design with performance testing so the robot can move efficiently, react predictably, and improve through repeated development cycles. This project reflects my interest in physical systems and the process of turning a concept into a working, testable machine.',
-    features: [
-      'Custom robotic build for movement and control',
-      'Engineering focus on precision and efficiency',
-      'Iteration and testing for competitive performance',
-      'Hands-on hardware design with practical problem solving'
-    ],
-    images: [
-      'Minibot preview.jpg',
-      'https://images.unsplash.com/photo-1555618563-8761c36c43f8?auto=format&fit=crop&w=1200&q=80'
-    ]
-  },
-    {
-    id: 'robotic-hand',
-    title: 'Robotic Hand',
-    year: '2026',
-    description: 'A work-in-progress robotic hand project focused on developing movement, control, and mechanical functionality. This project is not completed yet and is currently under development.',
-    tags: ['Robotics', 'Hardware', 'Engineering'],
-    url: '#',
-    github: '#',
-    overview: 'The Robotic Hand is a work-in-progress engineering project focused on designing and building a functional robotic hand. The current prototype uses dental floss as a tendon-like mechanism connected to servos to control and move the individual fingers. The project is not completed yet and is still being developed and tested. In the future, I plan to add a camera-based computer vision system that can detect my hand movements and translate them into corresponding movements on the robotic hand, allowing the robot to mimic the movement of a real hand.',
-    features: [
-      'Custom robotic hand design and mechanical development',
-      'Motor and movement control systems',
-      'Hands-on hardware engineering and testing',
-      'Ongoing development and iteration toward a completed prototype'
-    ],
-    images: [
-      'robotic hand preview.png',
-      'Robotic Arm Bend.png'
     ]
   },
     {
