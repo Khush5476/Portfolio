@@ -2477,6 +2477,877 @@ body {
   z-index: 1;
 }
 
+/* =========================================================
+   ROBOTIC HAND PROJECT PAGE
+   ========================================================= */
+
+.robotic-hand-page {
+  position: relative;
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(92, 126, 255, 0.28),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(133, 200, 255, 0.14),
+      transparent 22%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(161, 96, 255, 0.14),
+      transparent 30%
+    ),
+    linear-gradient(
+      160deg,
+      #030414,
+      #071020 36%,
+      #0b1129 100%
+    );
+
+  color: #eef5ff;
+}
+
+
+/* Subtle grid */
+
+.robotic-hand-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      rgba(118, 151, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(118, 151, 255, 0.05) 1px,
+      transparent 1px
+    );
+
+  background-size: 28px 28px;
+
+  mask-image:
+    radial-gradient(
+      circle at center,
+      black 35%,
+      transparent 100%
+    );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+
+/* Main container */
+
+.robotic-hand-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Header */
+
+.robotic-hand-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 1.5rem;
+}
+
+.robotic-hand-header a {
+  color: #9ed9ff;
+  text-decoration: none;
+  font-weight: 600;
+
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.robotic-hand-header a:hover {
+  color: #ffffff;
+  transform: translateX(-3px);
+}
+
+
+/* Hero */
+
+.robotic-hand-hero {
+  position: relative;
+
+  margin-bottom: 2.5rem;
+  padding: 1.5rem 1.5rem 2rem;
+
+  border-radius: 30px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(12, 20, 40, 0.9),
+      rgba(10, 17, 34, 0.8)
+    ),
+    linear-gradient(
+      rgba(118, 151, 255, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(118, 151, 255, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    auto,
+    28px 28px,
+    28px 28px;
+
+  border: 1px solid rgba(142, 182, 255, 0.15);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 28px 80px rgba(11, 24, 52, 0.26);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.robotic-hand-hero:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(138, 216, 255, 0.38);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 34px 90px rgba(11, 24, 52, 0.34),
+    0 0 28px rgba(138, 216, 255, 0.1);
+}
+
+.robotic-hand-hero h1 {
+  margin: 0.25rem 0 0.75rem;
+
+  font-size:
+    clamp(3rem, 6vw, 5rem);
+
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.robotic-hand-intro {
+  margin: 0;
+
+  max-width: 900px;
+
+  font-size: 1.2rem;
+  line-height: 1.8;
+
+  color: var(--text-muted);
+
+  padding-bottom: 1.5rem;
+
+  border-bottom:
+    1px solid rgba(143, 180, 255, 0.18);
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.robotic-hand-cards {
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+
+  margin-top: 1.5rem;
+}
+
+
+/* Main card */
+
+.robotic-hand-card {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(300px, 0.9fr)
+    minmax(0, 1.35fr);
+
+  gap: 2rem;
+
+  padding: 1.25rem;
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 20, 42, 0.96),
+      rgba(10, 17, 28, 0.92)
+    );
+
+  border:
+    1px solid rgba(122, 182, 255, 0.28);
+
+  box-shadow:
+    0 28px 90px rgba(16, 31, 69, 0.22);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+
+/* Mouse glow */
+
+.robotic-hand-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      280px circle at var(--pointer-x) var(--pointer-y),
+      rgba(111, 180, 255, 0.25),
+      rgba(90, 120, 255, 0.08) 30%,
+      transparent 68%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.3s ease;
+
+  pointer-events: none;
+}
+
+.robotic-hand-card:hover::before {
+  opacity: 1;
+}
+
+.robotic-hand-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(138, 216, 255, 0.42);
+
+  box-shadow:
+    0 34px 105px rgba(27, 44, 88, 0.34);
+}
+
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.robotic-card-image {
+  position: relative;
+
+  min-height: 430px;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.04),
+      rgba(255,255,255,0.015)
+    );
+
+  align-self: stretch;
+}
+
+.robotic-card-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position: center;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.45s ease;
+}
+
+.robotic-card-image:hover img {
+  transform: scale(1.045);
+
+  filter:
+    brightness(1.05)
+    saturate(1.08);
+}
+
+
+/* =========================================================
+   CARD CONTENT
+   ========================================================= */
+
+.robotic-card-content {
+  position: relative;
+
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  padding: 1rem 1rem 1rem 0;
+}
+
+.robotic-card-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+}
+
+.robotic-chip {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 2.4rem;
+  height: 2.4rem;
+
+  padding: 0 0.7rem;
+
+  border-radius: 999px;
+
+  background:
+    rgba(92, 153, 255, 0.18);
+
+  border:
+    1px solid rgba(132, 194, 255, 0.32);
+
+  color: #bfe2ff;
+
+  font-size: 0.75rem;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+}
+
+.robotic-stage {
+  color: #90c9ff;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+
+  text-align: right;
+}
+
+.robotic-card-content h2 {
+  margin: 0 0 1rem;
+
+  font-size:
+    clamp(2rem, 3vw, 3rem);
+
+  line-height: 1.05;
+
+  letter-spacing: -0.05em;
+}
+
+.robotic-card-content p {
+  margin: 0 0 1rem;
+
+  color: var(--text-muted);
+
+  font-size: 1rem;
+
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   FEATURE BOX
+   ========================================================= */
+
+.robotic-feature-box {
+  margin-top: 0.7rem;
+
+  padding: 1rem 1.1rem;
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  border:
+    1px solid rgba(142, 182, 255, 0.16);
+}
+
+.robotic-feature-box span {
+  display: block;
+
+  margin-bottom: 0.25rem;
+
+  color: #82c9ff;
+
+  font-size: 0.68rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.robotic-feature-box strong {
+  color: #edf5ff;
+
+  font-size: 0.95rem;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   MINI HARDWARE BOXES
+   ========================================================= */
+
+.robotic-feature-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 0.65rem;
+
+  margin-top: 0.7rem;
+}
+
+.robotic-mini-box {
+  padding: 0.8rem;
+
+  min-height: 75px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  border:
+    1px solid rgba(142, 182, 255, 0.15);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.robotic-mini-box:hover {
+  transform: translateY(-3px);
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  border-color:
+    rgba(150, 182, 255, 0.35);
+}
+
+.robotic-mini-box span {
+  color: #7bb7ff;
+
+  font-size: 0.65rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.robotic-mini-box strong {
+  margin-top: 0.2rem;
+
+  color: #edf5ff;
+
+  font-size: 0.85rem;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================================
+   FINAL DESIGN
+   ========================================================= */
+
+.final-robotic-card {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(30, 24, 15, 0.95),
+      rgba(10, 14, 28, 0.92)
+    );
+
+  border-color:
+    rgba(255, 205, 92, 0.32);
+
+  box-shadow:
+    0 28px 90px rgba(90, 72, 16, 0.22);
+}
+
+.final-robotic-card::before {
+  background:
+    radial-gradient(
+      280px circle at var(--pointer-x) var(--pointer-y),
+      rgba(255, 225, 136, 0.36),
+      rgba(255, 181, 54, 0.14) 28%,
+      transparent 68%
+    );
+}
+
+.final-robotic-card:hover {
+  border-color:
+    rgba(255, 214, 84, 0.48);
+
+  box-shadow:
+    0 36px 110px rgba(146, 111, 22, 0.34);
+}
+
+.final-chip {
+  background:
+    rgba(255, 205, 92, 0.18);
+
+  border-color:
+    rgba(255, 209, 101, 0.38);
+
+  color: #ffe7a8;
+}
+
+.final-robotic-card .robotic-stage {
+  color: #f4c76a;
+}
+
+.final-robotic-card h2 {
+  color: #fff8e5;
+}
+
+
+/* =========================================================
+   FINAL HIGHLIGHTS
+   ========================================================= */
+
+.robotic-final-highlights {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 0.65rem;
+
+  margin-top: 0.8rem;
+}
+
+.robotic-final-highlights div {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100px;
+
+  padding: 0.8rem;
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 205, 92, 0.07);
+
+  border:
+    1px solid rgba(255, 214, 84, 0.22);
+
+  text-align: center;
+}
+
+.robotic-final-highlights strong {
+  font-size: 2rem;
+
+  line-height: 1;
+
+  color: #f4c76a;
+}
+
+.robotic-final-highlights span {
+  margin-top: 0.45rem;
+
+  color: #d8cdb5;
+
+  font-size: 0.68rem;
+
+  line-height: 1.35;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.07em;
+}
+
+
+/* =========================================================
+   REFLECTION
+   ========================================================= */
+
+.robotic-reflection {
+  margin-top: 2.8rem;
+
+  padding-top: 1rem;
+}
+
+.robotic-learning-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 1rem;
+
+  margin-top: 1.2rem;
+}
+
+.robotic-learning-item {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+
+  position: relative;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 1rem;
+
+  padding: 1rem 1.1rem;
+
+  border-radius: 18px;
+
+  background:
+    rgba(13, 18, 32, 0.72);
+
+  border:
+    1px solid rgba(154, 177, 255, 0.16);
+
+  box-shadow:
+    0 18px 60px rgba(6, 10, 20, 0.22);
+
+  overflow: hidden;
+
+  transition:
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
+    border-color 0.24s ease;
+}
+
+.robotic-learning-item::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      180px circle at var(--pointer-x) var(--pointer-y),
+      rgba(146, 176, 255, 0.26),
+      rgba(93, 118, 255, 0.08) 28%,
+      transparent 68%
+    );
+
+  opacity: 0;
+
+  transition: opacity 0.25s ease;
+
+  pointer-events: none;
+}
+
+.robotic-learning-item:hover {
+  transform: translateY(-3px);
+
+  border-color:
+    rgba(167, 194, 255, 0.3);
+
+  box-shadow:
+    0 22px 70px rgba(15, 28, 60, 0.28);
+}
+
+.robotic-learning-item:hover::before {
+  opacity: 1;
+}
+
+.robotic-learning-item > * {
+  position: relative;
+  z-index: 1;
+}
+
+.robotic-learning-item > span {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 2.5rem;
+
+  flex-shrink: 0;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(153, 125, 255, 0.3),
+      rgba(93, 140, 255, 0.18)
+    );
+
+  color: #f4f2ff;
+
+  font-weight: 900;
+
+  font-size: 0.78rem;
+
+  letter-spacing: 0.08em;
+}
+
+.robotic-learning-item p {
+  margin: 0;
+
+  color: var(--text-muted);
+
+  line-height: 1.8;
+
+  font-size: 0.96rem;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 820px) {
+
+  .robotic-hand-shell {
+    padding-left: 1.1rem;
+    padding-right: 1.1rem;
+  }
+
+  .robotic-hand-card {
+    grid-template-columns: 1fr;
+
+    gap: 1.25rem;
+  }
+
+.robotic-card-image {
+    width: 70%;
+    max-width: 420px;
+    height: 260px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.robotic-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+  .robotic-card-content {
+    padding: 0.5rem 0.4rem 0.75rem;
+  }
+
+  .robotic-learning-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  .robotic-hand-shell {
+    padding-top: 3rem;
+  }
+
+  .robotic-hand-hero {
+    padding: 1.2rem;
+  }
+
+  .robotic-hand-hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .robotic-hand-intro {
+    font-size: 1rem;
+  }
+
+  .robotic-hand-card {
+    padding: 0.85rem;
+
+    border-radius: 22px;
+  }
+
+  .robotic-card-image {
+    min-height: 280px;
+
+    border-radius: 18px;
+  }
+
+  .robotic-card-content h2 {
+    font-size: 2rem;
+  }
+
+  .robotic-feature-grid,
+  .robotic-final-highlights {
+    grid-template-columns: 1fr;
+  }
+
+}
+
 /* =========================
    Responsive
    ========================= */

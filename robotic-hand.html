@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robotic Hand</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="robotic-hand-page">
+
+  <div class="ambient-nodes" aria-hidden="true"></div>
+  <div class="background-layer"></div>
+  <div class="background-layer layer-two"></div>
+
+  <main class="robotic-hand-shell">
+
+    <!-- HEADER -->
+    <div class="robotic-hand-header reveal">
+      <a href="index.html">← Back to portfolio</a>
+    </div>
+
+    <!-- HERO -->
+    <header class="robotic-hand-hero reveal">
+      <p class="eyebrow">Robotics Project</p>
+
+      <h1>Robotic Hand</h1>
+
+      <p class="robotic-hand-intro">
+        A 3D-printed robotic hand designed to replicate natural finger
+        movement using servos, string, rubber bands, and hand-tracking
+        software.
+      </p>
+    </header>
+
+
+    <!-- BUILD SECTIONS -->
+    <div class="robotic-hand-cards">
+
+
+      <!-- =========================
+           HAND AND FINGERS
+           ========================= -->
+      <article class="robotic-hand-card reveal">
+
+        <div class="robotic-card-image">
+          <!-- Replace this image with your own -->
+          <img
+            src="robotic_hand_fingers.png"
+            alt="Robotic hand and finger design"
+          />
+        </div>
+
+        <div class="robotic-card-content">
+
+          <div class="robotic-card-top">
+            <span class="robotic-chip">01</span>
+            <span class="robotic-stage">Design & Fabrication</span>
+          </div>
+
+          <h2>Hand and Fingers</h2>
+
+          <p>
+            I started by designing the hand around my own measurements so
+            the final model would have realistic proportions and be roughly
+            the same size as my hand. This gave me a physical reference to
+            work from instead of designing the hand around arbitrary
+            dimensions.
+          </p>
+
+          <p>
+            For the fingers, I created cylinders and then sliced both sides
+            at a 45-degree angle. This created the individual bending
+            sections needed for the fingers to move naturally.
+          </p>
+
+          <p>
+            I then added internal holes to control how each finger moved.
+            The front section had a hole for the string to pass through.
+            When the string was pulled by the servo, it would bend the
+            finger.
+          </p>
+
+          <p>
+            Behind this, I added two more holes for a rubber band. The
+            rubber band kept the finger upright and allowed it to return
+            to its home position when the string was loosened.
+          </p>
+
+          <p>
+            Finally, I created an opening for the thumb. Because the thumb
+            needs more movement than the other fingers, I used two servos:
+            one servo controls the thumb moving left and right, while the
+            second servo controls the thumb curling motion.
+          </p>
+
+          <div class="robotic-feature-box">
+            <span>Design Focus</span>
+            <strong>Realistic hand proportions + mechanical finger movement</strong>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           ARM WITH SERVOS
+           ========================= -->
+      <article class="robotic-hand-card reveal">
+
+        <div class="robotic-card-image">
+          <!-- Replace this image with your own -->
+          <img
+            src="robotic_hand_arm.png"
+            alt="Robotic hand arm and servo mount"
+          />
+        </div>
+
+        <div class="robotic-card-content">
+
+          <div class="robotic-card-top">
+            <span class="robotic-chip">02</span>
+            <span class="robotic-stage">Mechanical Assembly</span>
+          </div>
+
+          <h2>Arm With Servos</h2>
+
+          <p>
+            Once the hand was created, I started working on the arm that
+            would hold all of the servos and connect the mechanical system
+            together.
+          </p>
+
+          <p>
+            I began by creating a large cylindrical base. This gave the
+            arm a wider footprint, making the overall build more stable
+            when the servos were moving the fingers.
+          </p>
+
+          <p>
+            I also added two cylindrical pieces that protruded from the
+            hand. To connect the hand and arm, I designed two matching
+            indents in the arm. This allowed the two pieces to connect
+            using a press-fit assembly.
+          </p>
+
+          <p>
+            After the main structure was complete, I created dedicated
+            mounting areas for all of the servos. This kept the motors
+            positioned correctly while allowing them to pull the strings
+            controlling each finger.
+          </p>
+
+          <p>
+            Finally, I added a hole at the back of the arm so the servo
+            wires could pass through the structure without interfering with
+            the moving parts.
+          </p>
+
+          <div class="robotic-feature-grid">
+
+            <div class="robotic-mini-box">
+              <span>Base</span>
+              <strong>Wide cylindrical support</strong>
+            </div>
+
+            <div class="robotic-mini-box">
+              <span>Connection</span>
+              <strong>Press-fit hand mount</strong>
+            </div>
+
+            <div class="robotic-mini-box">
+              <span>Servos</span>
+              <strong>Dedicated mounting areas</strong>
+            </div>
+
+            <div class="robotic-mini-box">
+              <span>Wiring</span>
+              <strong>Rear wire passage</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           HARDWARE
+           ========================= -->
+      <article class="robotic-hand-card reveal">
+
+        <div class="robotic-card-image">
+          <!-- Replace this image with your own -->
+          <img
+            src="robotic_hand_hardware.png"
+            alt="Robotic hand electronics and wiring"
+          />
+        </div>
+
+        <div class="robotic-card-content">
+
+          <div class="robotic-card-top">
+            <span class="robotic-chip">03</span>
+            <span class="robotic-stage">Electronics & Software</span>
+          </div>
+
+          <h2>Hardware</h2>
+
+          <p>
+            At first, I wanted to fit all of the wiring inside the physical
+            build. However, I did not have a board that could connect all
+            of the servos directly, so I used a breadboard to give myself
+            more space for connecting the wires.
+          </p>
+
+          <p>
+            The wiring ended up being somewhat messy, but the breadboard
+            gave me enough room to connect everything and get the system
+            working reliably.
+          </p>
+
+          <p>
+            For the software side, I downloaded the MediaPipe library and
+            created code that could detect my hand and track its movement.
+            I then mapped each servo to its corresponding finger.
+          </p>
+
+          <p>
+            This meant that moving one of my fingers would correspond to
+            movement from the matching servo on the robotic hand. After
+            connecting all of the wires and debugging the system, the
+            robotic hand was able to respond to my hand movements.
+          </p>
+
+          <div class="robotic-feature-box hardware-box">
+            <span>Control System</span>
+            <strong>MediaPipe hand tracking → finger movement → servo control</strong>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- =========================
+           FINAL DESIGN
+           ========================= -->
+      <article class="robotic-hand-card final-robotic-card reveal">
+
+        <div class="robotic-card-image final-robotic-image">
+          <!-- Replace this image with your own -->
+          <img
+            src="robotic hand preview.png"
+            alt="Final robotic hand design"
+          />
+        </div>
+
+        <div class="robotic-card-content">
+
+          <div class="robotic-card-top">
+            <span class="robotic-chip final-chip">04</span>
+            <span class="robotic-stage">Final Build</span>
+          </div>
+
+          <h2>Final Design</h2>
+
+          <p>
+            The final design combines the mechanical structure, servo
+            system, string mechanisms, rubber bands, and hand-tracking
+            software into one working robotic hand.
+          </p>
+
+          <p>
+            The design was built around the goal of making the fingers move
+            in a way that corresponds to my own hand movements. Each finger
+            has its own mechanical system, while the thumb uses two servos
+            to provide additional movement.
+          </p>
+
+          <p>
+            One of the biggest parts of the build was getting the mechanical
+            and electronic systems to work together. The hand had to be
+            designed around the movement of the strings and rubber bands,
+            while the arm had to provide enough space for the servos and
+            wiring.
+          </p>
+
+          <p>
+            After assembling the parts, connecting the electronics, and
+            debugging the hand-tracking system, I was able to create a
+            functional robotic hand that responds to my hand movements.
+          </p>
+
+          <div class="robotic-final-highlights">
+
+            <div>
+              <strong>5</strong>
+              <span>Finger Systems</span>
+            </div>
+
+            <div>
+              <strong>2</strong>
+              <span>Thumb Servos</span>
+            </div>
+
+            <div>
+              <strong>1</strong>
+              <span>Hand Tracking System</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <!-- REFLECTION -->
+    <section class="robotic-reflection reveal">
+
+      <div class="section-heading">
+        <p class="eyebrow">Reflection</p>
+        <h2>What I Learned From the Build</h2>
+      </div>
+
+      <div class="robotic-learning-grid">
+
+        <div class="robotic-learning-item">
+          <span>01</span>
+          <p>
+            Designing around real measurements made the robotic hand feel
+            more realistic and gave me a better understanding of designing
+            parts around a physical reference.
+          </p>
+        </div>
+
+        <div class="robotic-learning-item">
+          <span>02</span>
+          <p>
+            Mechanical systems need to be designed around how the parts
+            will actually move, not just how they look in CAD.
+          </p>
+        </div>
+
+        <div class="robotic-learning-item">
+          <span>03</span>
+          <p>
+            Working with servos, strings, rubber bands, and 3D-printed
+            parts taught me how mechanical and electronic systems can work
+            together.
+          </p>
+        </div>
+
+        <div class="robotic-learning-item">
+          <span>04</span>
+          <p>
+            Debugging the wiring and MediaPipe tracking showed me how
+            important testing and iteration are when combining hardware
+            and software.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- Reveal + mouse glow -->
+  <script>
+    (() => {
+
+      const revealItems = document.querySelectorAll('.reveal');
+
+      const prefersReducedMotion =
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      revealItems.forEach((item, index) => {
+        item.style.transitionDelay =
+          prefersReducedMotion
+            ? '0ms'
+            : `${Math.min(index * 70, 420)}ms`;
+      });
+
+      if (
+        prefersReducedMotion ||
+        !('IntersectionObserver' in window)
+      ) {
+        revealItems.forEach(item =>
+          item.classList.add('visible')
+        );
+      } else {
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+
+            entries.forEach(entry => {
+
+              if (entry.isIntersecting) {
+
+                entry.target.classList.add('visible');
+
+                observer.unobserve(entry.target);
+
+              }
+
+            });
+
+          },
+          {
+            threshold: 0.08,
+            rootMargin: '0px 0px -30px'
+          }
+        );
+
+        revealItems.forEach(item =>
+          observer.observe(item)
+        );
+      }
+
+
+      /* Mouse-following card glow */
+
+      const glowingElements =
+        document.querySelectorAll(
+          '.robotic-hand-card, .robotic-learning-item'
+        );
+
+      glowingElements.forEach(element => {
+
+        element.addEventListener(
+          'pointermove',
+          (event) => {
+
+            const rect =
+              element.getBoundingClientRect();
+
+            const x =
+              ((event.clientX - rect.left) /
+                rect.width) * 100;
+
+            const y =
+              ((event.clientY - rect.top) /
+                rect.height) * 100;
+
+            element.style.setProperty(
+              '--pointer-x',
+              `${x}%`
+            );
+
+            element.style.setProperty(
+              '--pointer-y',
+              `${y}%`
+            );
+
+          }
+        );
+
+        element.addEventListener(
+          'pointerleave',
+          () => {
+
+            element.style.setProperty(
+              '--pointer-x',
+              '50%'
+            );
+
+            element.style.setProperty(
+              '--pointer-y',
+              '50%'
+            );
+
+          }
+        );
+
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

@@ -124,7 +124,7 @@ const projects = [
     description: 'A work-in-progress robotic hand project focused on developing movement, control, and mechanical functionality. This project is not completed yet and is currently under development.',
     tags: ['Robotics', 'Hardware', 'Engineering'],
     url: '#',
-    github: '',
+    github: '#',
     overview: 'The Robotic Hand is a work-in-progress engineering project focused on designing and building a functional robotic hand. The current prototype uses dental floss as a tendon-like mechanism connected to servos to control and move the individual fingers. The project is not completed yet and is still being developed and tested. In the future, I plan to add a camera-based computer vision system that can detect my hand movements and translate them into corresponding movements on the robotic hand, allowing the robot to mimic the movement of a real hand.',
     features: [
       'Custom robotic hand design and mechanical development',
@@ -209,9 +209,12 @@ function renderProjects(category = 'All') {
     card.style.setProperty('--delay', `${index * 70}ms`);
     card.tabIndex = 0;
 
-    const detailLink = project.id === 'mini-bot'
+    const detailLink =
+    project.id === 'mini-bot'
         ? 'mini-bot.html?project=mini-bot'
-        : `project.html?project=${encodeURIComponent(project.id)}`;
+        : project.id === 'robotic-hand'
+            ? 'robotic-hand.html'
+            : `project.html?project=${encodeURIComponent(project.id)}`;
 
     card.innerHTML = `
       ${['ecommerce-admin-viewer', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery', 'robotic-hand', 'portfolio-website'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
