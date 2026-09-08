@@ -1,8 +1,159 @@
+/*
+ * ==============================
+ * CONTACT FORM
+ * ==============================
+ */
+
+const contactForm =
+  document.querySelector('#contactForm');
+
+const successPopup =
+  document.querySelector('#successPopup');
+
+const successClose =
+  document.querySelector('#successClose');
+
+const submitButton =
+  document.querySelector('#submitButton');
+
+if (contactForm) {
+
+  contactForm.addEventListener(
+    'submit',
+    async event => {
+
+      event.preventDefault();
+
+      const originalText =
+        submitButton.textContent;
+
+      submitButton.disabled = true;
+      submitButton.textContent = 'Sending...';
+
+      try {
+
+        const formData =
+          new FormData(contactForm);
+
+        const response =
+          await fetch(
+            contactForm.action,
+            {
+              method: 'POST',
+              body: formData,
+              headers: {
+                Accept: 'application/json'
+              }
+            }
+          );
+
+        if (response.ok) {
+
+          // Clear the form
+          contactForm.reset();
+
+          // Show popup
+          successPopup.classList.add('active');
+
+        } else {
+
+          alert(
+            'Something went wrong. Please try again.'
+          );
+
+        }
+
+      } catch (error) {
+
+        alert(
+          'Something went wrong. Please check your connection and try again.'
+        );
+
+      } finally {
+
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+
+      }
+
+    }
+  );
+
+}
+
+/*
+ * ==============================
+ * CLOSE SUCCESS POPUP
+ * ==============================
+ */
+
+if (successClose) {
+
+  successClose.addEventListener(
+    'click',
+    () => {
+
+      successPopup.classList.remove(
+        'active'
+      );
+
+    }
+  );
+
+}
+
+/*
+ * Close when clicking outside card
+ */
+
+if (successPopup) {
+
+  successPopup.addEventListener(
+    'click',
+    event => {
+
+      if (event.target === successPopup) {
+
+        successPopup.classList.remove(
+          'active'
+        );
+
+      }
+
+    }
+  );
+
+}
+
+/*
+ * Close with Escape key
+ */
+
+document.addEventListener(
+  'keydown',
+  event => {
+
+    if (
+      event.key === 'Escape' &&
+      successPopup &&
+      successPopup.classList.contains('active')
+    ) {
+
+      successPopup.classList.remove(
+        'active'
+      );
+
+    }
+
+  }
+);
+
 const projects = [
     {
     id: 'mini-bot',
     title: 'MiniBot',
     year: '2025-2026',
+    featured: true,
     description: 'A competitive robotics minibot designed for precise movement, efficient control, and reliable performance in a fast-paced engineering challenge.',
     tags: ['Robotics', 'Competition', 'Hardware'],
     url: '#',
@@ -22,6 +173,7 @@ const projects = [
     id: 'robotic-hand',
     title: 'Robotic Hand',
     year: '2026',
+    featured: true,
     description: 'A work-in-progress robotic hand project focused on developing movement, control, and mechanical functionality. This project is not completed yet and is currently under development.',
     tags: ['Robotics', 'Hardware', 'Engineering'],
     url: '#',
@@ -203,23 +355,26 @@ function renderProjects(category = 'All') {
     return;
   }
 
-  selection.forEach((project, index) => {
+selection.forEach((project, index) => {
     const card = document.createElement('article');
-    card.className = 'project-card reveal project-card-clickable';
+    // Apply 'featured-gold' to MiniBot and Robotic Hand or any project marked featured
+    const isGold = project.featured || project.id === 'mini-bot' || project.id === 'robotic-hand';
+    card.className = `project-card reveal project-card-clickable ${isGold ? 'featured-gold' : ''}`;
     card.style.setProperty('--delay', `${index * 70}ms`);
     card.tabIndex = 0;
 
     const detailLink =
-    project.id === 'mini-bot'
+      project.id === 'mini-bot'
         ? 'mini-bot.html?project=mini-bot'
         : project.id === 'robotic-hand'
-            ? 'robotic-hand.html'
-            : `project.html?project=${encodeURIComponent(project.id)}`;
+          ? 'robotic-hand.html'
+          : `project.html?project=${encodeURIComponent(project.id)}`;
 
     card.innerHTML = `
+      ${isGold ? `<span class="badge active featured-tag">Featured</span>` : ''}
       ${['ecommerce-admin-viewer', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery', 'robotic-hand', 'portfolio-website'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
       <div class="project-card-top">
-        <span class="project-label">Featured</span>
+        <span class="project-label">${isGold ? 'Final Specs' : 'Project'}</span>
         <span>
           <a class="project-link" href="${detailLink}">View Details</a>
         </span>

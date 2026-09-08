@@ -5,6 +5,142 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MiniBot</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Import map to map "three" and "three/addons/" for browser ES modules -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+
+<style>
+  .mini-bot-cad-section {
+    margin-top: 4.5rem;
+  }
+
+  .cad-intro {
+    max-width: 720px;
+    margin-top: .75rem;
+  }
+
+  .cad-viewer-card {
+    margin-top: 1.75rem;
+    overflow: hidden;
+    border: 1px solid rgba(150, 190, 230, .18);
+    border-radius: 24px;
+    background: rgba(8, 14, 24, .72);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+  }
+
+  .cad-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    border-bottom: 1px solid rgba(150, 190, 230, .12);
+    background: rgba(255, 255, 255, .025);
+  }
+
+  .cad-status {
+    color: rgba(220, 235, 250, .72);
+    font-size: .85rem;
+    white-space: nowrap;
+  }
+
+  .cad-controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: .45rem;
+  }
+
+  .cad-button {
+    border: 1px solid rgba(150, 190, 230, .18);
+    border-radius: 10px;
+    padding: .55rem .75rem;
+    color: inherit;
+    background: rgba(255, 255, 255, .045);
+    font: inherit;
+    font-size: .78rem;
+    cursor: pointer;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+
+  .cad-button:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, .09);
+    border-color: rgba(150, 200, 245, .38);
+  }
+
+  .cad-canvas {
+    position: relative;
+    width: 100%;
+    min-height: 560px;
+    background:
+      radial-gradient(circle at 50% 42%, rgba(105, 160, 220, .10), transparent 42%),
+      rgba(3, 7, 13, .78);
+  }
+
+  .cad-canvas canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cad-loading,
+  .cad-error {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 2rem;
+    text-align: center;
+    color: rgba(220, 235, 250, .72);
+  }
+
+  .cad-spinner {
+    width: 30px;
+    height: 30px;
+    margin: 0 auto .75rem;
+    border: 3px solid rgba(255, 255, 255, .12);
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: cad-spin .8s linear infinite;
+  }
+
+  @keyframes cad-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .cad-hint {
+    margin: 0;
+    padding: .85rem 1.1rem 1rem;
+    color: rgba(220, 235, 250, .5);
+    font-size: .78rem;
+    text-align: center;
+    border-top: 1px solid rgba(150, 190, 230, .10);
+  }
+
+  @media (max-width: 700px) {
+    .cad-toolbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .cad-controls {
+      justify-content: flex-start;
+    }
+
+    .cad-canvas {
+      min-height: 420px;
+    }
+  }
+</style>
+
 </head>
 <body class="mini-bot-page">
   <div class="ambient-nodes" aria-hidden="true"></div>
@@ -12,29 +148,20 @@
   <div class="background-layer layer-two"></div>
 
   <main class="mini-bot-shell">
-<div class="robotic-hand-header reveal">
-    <a href="index.html">← Back to portfolio</a>
+    <div class="robotic-hand-header reveal">
+      <a href="index.html">← Back to portfolio</a>
 
-    <div class="robotic-hand-actions">
+      <div class="robotic-hand-actions">
         <a
-            class="robotic-hand-button"
-            href="https://github.com/Khush5476/Minbot-V3-Code"
-            target="_blank"
-            rel="noreferrer"
+          class="robotic-hand-button"
+          href="https://github.com/Khush5476/Minbot-V3-Code"
+          target="_blank"
+          rel="noreferrer"
         >
-            View GitHub Code
+          View GitHub Code
         </a>
-
-        <a
-            class="robotic-hand-button"
-            href="https://cad.onshape.com/documents/62b2b58096b65bb2ea511d5e/w/32b002e3bcfe69346fc2c08d/e/0e7f6443af4f0afa0143e58b"
-            target="_blank"
-            rel="noreferrer"
-        >
-            View CAD
-        </a>
+      </div>
     </div>
-</div>
 
     <header class="mini-bot-hero reveal">
       <p class="eyebrow">Robotics Competition</p>
@@ -200,6 +327,41 @@
         </div>
       </article>
     </div>
+
+    <section class="mini-bot-cad-section reveal" id="cad-viewer">
+      <div class="section-heading">
+        <p class="eyebrow">Interactive CAD</p>
+        <h2>Explore the Final Robot</h2>
+        <p class="cad-intro">
+          Rotate, zoom, and inspect the MiniBot from different angles using the interactive 3D model.
+        </p>
+      </div>
+
+      <div class="cad-viewer-card">
+        <div class="cad-toolbar">
+          <div class="cad-status" id="cad-status">Loading MiniBot CAD…</div>
+          <div class="cad-controls">
+            <button type="button" class="cad-button" id="cad-reset">Reset</button>
+            <button type="button" class="cad-button" id="cad-front">Front</button>
+            <button type="button" class="cad-button" id="cad-side">Side</button>
+            <button type="button" class="cad-button" id="cad-top">Top</button>
+            <button type="button" class="cad-button" id="cad-wireframe">Wireframe</button>
+            <button type="button" class="cad-button" id="cad-rotate">Auto Rotate</button>
+          </div>
+        </div>
+
+        <div class="cad-canvas" id="minibot-cad-viewer">
+          <div class="cad-loading">
+            <div class="cad-spinner"></div>
+            <span>Loading MiniBot CAD…</span>
+          </div>
+        </div>
+
+        <p class="cad-hint">
+          Drag to rotate · Scroll to zoom · Right-click/shift-drag to move
+        </p>
+      </div>
+    </section>
 
     <section class="mini-bot-learnings reveal">
       <div class="section-heading">
@@ -412,5 +574,203 @@
       requestAnimationFrame(updateBackground);
     })();
   </script>
+
+<script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { STLLoader } from "three/addons/loaders/STLLoader.js";
+
+    (() => {
+      const viewer = document.getElementById("minibot-cad-viewer");
+      const status = document.getElementById("cad-status");
+      if (!viewer || !status) return;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x050912);
+
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 5000);
+      camera.position.set(230, 170, 250);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      viewer.innerHTML = "";
+      viewer.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.06;
+      controls.enablePan = true;
+      controls.minDistance = 25;
+      controls.maxDistance = 1000;
+
+      scene.add(new THREE.HemisphereLight(0xcfe5ff, 0x101722, 2.1));
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
+      keyLight.position.set(180, 260, 220);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0x9bc8ff, 1.8);
+      fillLight.position.set(-220, 100, -160);
+      scene.add(fillLight);
+
+      const gridY = -80;
+      const grid = new THREE.GridHelper(520, 26, 0x30465c, 0x172534);
+      grid.position.y = gridY;
+      scene.add(grid);
+
+      // Create a parent group to handle world-space Y-axis spinning
+      const modelGroup = new THREE.Group();
+      scene.add(modelGroup);
+
+      let model = null;
+      let material = null;
+      let originalMaterial = null;
+      let wireframe = false;
+      let autoRotate = false;
+      let defaultCamera;
+      let defaultTarget;
+
+      function resize() {
+        const width = viewer.clientWidth || 900;
+        const height = viewer.clientHeight || 560;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height, false);
+      }
+
+      function frameModel() {
+        if (!modelGroup) return;
+
+        const box = new THREE.Box3().setFromObject(modelGroup);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxSize = Math.max(size.x, size.y, size.z);
+        const distance = maxSize * 1.65;
+
+        camera.position.set(
+          center.x + distance * 0.85,
+          center.y + distance * 0.62,
+          center.z + distance * 0.95
+        );
+        camera.near = Math.max(maxSize / 1000, 0.01);
+        camera.far = Math.max(maxSize * 20, 1000);
+        camera.updateProjectionMatrix();
+
+        controls.target.copy(center);
+        controls.update();
+
+        defaultCamera = camera.position.clone();
+        defaultTarget = controls.target.clone();
+      }
+
+      function resetView() {
+        if (!defaultCamera || !defaultTarget) return;
+        camera.position.copy(defaultCamera);
+        controls.target.copy(defaultTarget);
+        controls.update();
+      }
+
+      function setView(axis) {
+        if (!modelGroup) return;
+        const box = new THREE.Box3().setFromObject(modelGroup);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const distance = Math.max(size.x, size.y, size.z) * 1.7;
+
+        if (axis === "front") camera.position.set(center.x, center.y, center.z + distance);
+        if (axis === "side") camera.position.set(center.x + distance, center.y, center.z);
+        if (axis === "top") camera.position.set(center.x, center.y + distance, center.z + 0.01);
+
+        controls.target.copy(center);
+        controls.update();
+      }
+
+      document.getElementById("cad-reset")?.addEventListener("click", resetView);
+      document.getElementById("cad-front")?.addEventListener("click", () => setView("front"));
+      document.getElementById("cad-side")?.addEventListener("click", () => setView("side"));
+      document.getElementById("cad-top")?.addEventListener("click", () => setView("top"));
+
+      document.getElementById("cad-wireframe")?.addEventListener("click", (event) => {
+        wireframe = !wireframe;
+        if (material) material.wireframe = wireframe;
+        event.currentTarget.textContent = wireframe ? "Solid" : "Wireframe";
+      });
+
+      document.getElementById("cad-rotate")?.addEventListener("click", (event) => {
+        autoRotate = !autoRotate;
+        event.currentTarget.textContent = autoRotate ? "Stop Rotate" : "Auto Rotate";
+      });
+
+      const loader = new STLLoader();
+
+      loader.load(
+        "Minibot Cad.stl",
+        (geometry) => {
+          geometry.computeVertexNormals();
+          geometry.center();
+
+          material = new THREE.MeshStandardMaterial({
+            color: 0x9fb7ca,
+            metalness: 0.58,
+            roughness: 0.34
+          });
+
+          originalMaterial = material;
+          model = new THREE.Mesh(geometry, material);
+
+          // Correct the model's base orientation inside the group
+          model.rotation.x = -Math.PI / 2;
+
+          // Add model to the group
+          modelGroup.add(model);
+
+          // Align the parent group height so the lowest point rests on the grid
+          const box = new THREE.Box3().setFromObject(modelGroup);
+          modelGroup.position.y = gridY - box.min.y;
+
+          frameModel();
+          status.textContent = "CAD loaded · Interactive";
+        },
+        (xhr) => {
+          if (xhr.total) {
+            status.textContent = `Loading MiniBot CAD · ${Math.round((xhr.loaded / xhr.total) * 100)}%`;
+          } else {
+            status.textContent = "Loading MiniBot CAD…";
+          }
+        },
+        (error) => {
+          console.error("MiniBot STL load error:", error);
+          status.textContent = "CAD failed to load";
+          viewer.innerHTML = `
+            <div class="cad-error">
+              <div>
+                <strong>Could not load the MiniBot CAD.</strong><br><br>
+                Make sure <em>Minibot Cad.stl</em> is in the same folder as
+                <em>mini-bot.html</em>.
+              </div>
+            </div>
+          `;
+        }
+      );
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        // Rotate the parent group around global Y-axis to spin upright
+        if (autoRotate && modelGroup) {
+          modelGroup.rotation.y += 0.006;
+        }
+
+        controls.update();
+        renderer.render(scene, camera);
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+      animate();
+    })();
+  </script>
+
 </body>
 </html>

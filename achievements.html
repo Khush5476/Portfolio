@@ -11,14 +11,18 @@
   <div class="background-layer"></div>
   <div class="background-layer layer-two"></div>
 
-  <header class="topbar">
-    <a class="brand" href="index.html">KHUSH</a>
-    <nav class="nav-links">
+<header class="topbar">
+  <a class="brand" href="index.html">KHUSH</a>
+
+  <button class="nav-toggle" aria-label="Open navigation">
+    ☰
+  </button>
+
+  <nav class="nav-links">
       <a href="index.html#home">Home</a>
-      <a href="index.html#projects">Projects</a>
-      <a href="index.html#about">About</a>
+      <a href="projects.html">Projects</a>
       <a href="achievements.html">Achievements</a>
-      <a href="index.html#contact">Contact</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
@@ -389,6 +393,31 @@
 
       requestAnimationFrame(updateBackground);
     })();
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+
+      const isOpen = navLinks.classList.contains('open');
+
+      navToggle.setAttribute(
+        'aria-label',
+        isOpen ? 'Close navigation' : 'Open navigation'
+      );
+
+      navToggle.textContent = isOpen ? '✕' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.textContent = '☰';
+        navToggle.setAttribute('aria-label', 'Open navigation');
+      });
+    });
+  }
   </script>
 </body>
 </html>

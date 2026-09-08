@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Robotic Hand</title>
   <link rel="stylesheet" href="style.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
 </head>
 
 <body class="robotic-hand-page">
@@ -14,29 +23,21 @@
   <div class="background-layer layer-two"></div>
 
   <main class="robotic-hand-shell">
-<div class="robotic-hand-header reveal">
-    <a href="index.html">← Back to portfolio</a>
+    <div class="robotic-hand-header reveal">
+      <a href="index.html">← Back to portfolio</a>
 
-    <div class="robotic-hand-actions">
+      <div class="robotic-hand-actions">
         <a
-            class="robotic-hand-button"
-            href="https://github.com/Khush5476/Robotic-Hand"
-            target="_blank"
-            rel="noreferrer"
+          class="robotic-hand-button"
+          href="https://github.com/Khush5476/Robotic-Hand"
+          target="_blank"
+          rel="noreferrer"
         >
-            View GitHub Code
+          View GitHub Code
         </a>
-
-        <a
-            class="robotic-hand-button"
-            href="https://cad.onshape.com/documents/8a049bef95a24618d1c3ac68/w/dc02564f6c90078397233450/e/cca92257d117372aba11c272"
-            target="_blank"
-            rel="noreferrer"
-        >
-            View CAD
-        </a>
+      </div>
     </div>
-</div>
+
     <!-- HERO -->
     <header class="robotic-hand-hero reveal">
       <p class="eyebrow">Robotics Project</p>
@@ -61,7 +62,6 @@
       <article class="robotic-hand-card reveal">
 
         <div class="robotic-card-image">
-          <!-- Replace this image with your own -->
           <img
             src="robotic_hand_fingers.png"
             alt="Robotic hand and finger design"
@@ -127,7 +127,6 @@
       <article class="robotic-hand-card reveal">
 
         <div class="robotic-card-image">
-          <!-- Replace this image with your own -->
           <img
             src="robotic_hand_arm.png"
             alt="Robotic hand arm and servo mount"
@@ -210,7 +209,6 @@
       <article class="robotic-hand-card reveal">
 
         <div class="robotic-card-image">
-          <!-- Replace this image with your own -->
           <img
             src="robotic_hand_hardware.png"
             alt="Robotic hand electronics and wiring"
@@ -263,12 +261,11 @@
 
 
       <!-- =========================
-           FINAL DESIGN
+           FINAL BUILD
            ========================= -->
       <article class="robotic-hand-card final-robotic-card reveal">
 
         <div class="robotic-card-image final-robotic-image">
-          <!-- Replace this image with your own -->
           <img
             src="robotic hand preview.png"
             alt="Final robotic hand design"
@@ -335,6 +332,27 @@
       </article>
 
     </div>
+
+
+    <!-- 3D MODEL VIEWER -->
+    <section id="final-design" class="reveal" style="margin-top: 40px;">
+      <h2>Interactive 3D CAD Model</h2>
+      <p>Interactive 3D model of the Robotic Hand assembly.</p>
+
+      <div class="cad-container">
+        <div id="cad-status">Loading Robotic Hand CAD…</div>
+        <div id="minibot-cad-viewer"></div>
+
+        <div class="cad-controls">
+          <button id="cad-reset">Reset View</button>
+          <button id="cad-front">Front</button>
+          <button id="cad-side">Side</button>
+          <button id="cad-top">Top</button>
+          <button id="cad-wireframe">Wireframe</button>
+          <button id="cad-rotate">Auto Rotate</button>
+        </div>
+      </div>
+    </section>
 
 
     <!-- REFLECTION -->
@@ -498,6 +516,204 @@
 
       });
 
+    })();
+  </script>
+
+  <!-- Three.js 3D Viewer Script -->
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { STLLoader } from "three/addons/loaders/STLLoader.js";
+
+    (() => {
+      const viewer = document.getElementById("minibot-cad-viewer");
+      const status = document.getElementById("cad-status");
+      if (!viewer || !status) return;
+
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x050912);
+
+      const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 5000);
+      camera.position.set(230, 170, 250);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      viewer.innerHTML = "";
+      viewer.appendChild(renderer.domElement);
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.06;
+      controls.enablePan = true;
+      controls.minDistance = 25;
+      controls.maxDistance = 1000;
+
+      scene.add(new THREE.HemisphereLight(0xcfe5ff, 0x101722, 2.1));
+
+      const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
+      keyLight.position.set(180, 260, 220);
+      scene.add(keyLight);
+
+      const fillLight = new THREE.DirectionalLight(0x9bc8ff, 1.8);
+      fillLight.position.set(-220, 100, -160);
+      scene.add(fillLight);
+
+      const gridY = -80;
+      const grid = new THREE.GridHelper(520, 26, 0x30465c, 0x172534);
+      grid.position.y = gridY;
+      scene.add(grid);
+
+      // Create a parent group to handle world-space Y-axis spinning
+      const modelGroup = new THREE.Group();
+      scene.add(modelGroup);
+
+      let model = null;
+      let material = null;
+      let originalMaterial = null;
+      let wireframe = false;
+      let autoRotate = false;
+      let defaultCamera;
+      let defaultTarget;
+
+      function resize() {
+        const width = viewer.clientWidth || 900;
+        const height = viewer.clientHeight || 560;
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+        renderer.setSize(width, height, false);
+      }
+
+      function frameModel() {
+        if (!modelGroup) return;
+
+        const box = new THREE.Box3().setFromObject(modelGroup);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const maxSize = Math.max(size.x, size.y, size.z);
+        const distance = maxSize * 1.65;
+
+        camera.position.set(
+          center.x + distance * 0.85,
+          center.y + distance * 0.62,
+          center.z + distance * 0.95
+        );
+        camera.near = Math.max(maxSize / 1000, 0.01);
+        camera.far = Math.max(maxSize * 20, 1000);
+        camera.updateProjectionMatrix();
+
+        controls.target.copy(center);
+        controls.update();
+
+        defaultCamera = camera.position.clone();
+        defaultTarget = controls.target.clone();
+      }
+
+      function resetView() {
+        if (!defaultCamera || !defaultTarget) return;
+        camera.position.copy(defaultCamera);
+        controls.target.copy(defaultTarget);
+        controls.update();
+      }
+
+      function setView(axis) {
+        if (!modelGroup) return;
+        const box = new THREE.Box3().setFromObject(modelGroup);
+        const size = box.getSize(new THREE.Vector3());
+        const center = box.getCenter(new THREE.Vector3());
+        const distance = Math.max(size.x, size.y, size.z) * 1.7;
+
+        if (axis === "front") camera.position.set(center.x, center.y, center.z + distance);
+        if (axis === "side") camera.position.set(center.x + distance, center.y, center.z);
+        if (axis === "top") camera.position.set(center.x, center.y + distance, center.z + 0.01);
+
+        controls.target.copy(center);
+        controls.update();
+      }
+
+      document.getElementById("cad-reset")?.addEventListener("click", resetView);
+      document.getElementById("cad-front")?.addEventListener("click", () => setView("front"));
+      document.getElementById("cad-side")?.addEventListener("click", () => setView("side"));
+      document.getElementById("cad-top")?.addEventListener("click", () => setView("top"));
+
+      document.getElementById("cad-wireframe")?.addEventListener("click", (event) => {
+        wireframe = !wireframe;
+        if (material) material.wireframe = wireframe;
+        event.currentTarget.textContent = wireframe ? "Solid" : "Wireframe";
+      });
+
+      document.getElementById("cad-rotate")?.addEventListener("click", (event) => {
+        autoRotate = !autoRotate;
+        event.currentTarget.textContent = autoRotate ? "Stop Rotate" : "Auto Rotate";
+      });
+
+      const loader = new STLLoader();
+
+      loader.load(
+        "Robotic Hand Cad.stl",
+        (geometry) => {
+          geometry.computeVertexNormals();
+          geometry.center();
+
+          material = new THREE.MeshStandardMaterial({
+            color: 0x9fb7ca,
+            metalness: 0.58,
+            roughness: 0.34
+          });
+
+          originalMaterial = material;
+          model = new THREE.Mesh(geometry, material);
+
+          // Correct the model's base orientation inside the group
+          model.rotation.x = -Math.PI / 2;
+
+          // Add model to the group
+          modelGroup.add(model);
+
+          // Align the parent group height so the lowest point rests on the grid
+          const box = new THREE.Box3().setFromObject(modelGroup);
+          modelGroup.position.y = gridY - box.min.y;
+
+          frameModel();
+          status.textContent = "CAD loaded · Interactive";
+        },
+        (xhr) => {
+          if (xhr.total) {
+            status.textContent = `Loading Robotic Hand CAD · ${Math.round((xhr.loaded / xhr.total) * 100)}%`;
+          } else {
+            status.textContent = "Loading Robotic Hand CAD…";
+          }
+        },
+        (error) => {
+          console.error("Robotic Hand CAD load error:", error);
+          status.textContent = "CAD failed to load";
+          viewer.innerHTML = `
+            <div class="cad-error">
+              <div>
+                <strong>Could not load the CAD file.</strong><br><br>
+                Make sure <em>Robotic Hand Cad.stl</em> is in the same folder as
+                your HTML file.
+              </div>
+            </div>
+          `;
+        }
+      );
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        // Rotate the parent group around global Y-axis to spin upright
+        if (autoRotate && modelGroup) {
+          modelGroup.rotation.y += 0.006;
+        }
+
+        controls.update();
+        renderer.render(scene, camera);
+      }
+
+      window.addEventListener("resize", resize);
+      resize();
+      animate();
     })();
   </script>
 
