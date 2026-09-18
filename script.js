@@ -190,6 +190,42 @@ const projects = [
       'Robotic Arm Bend.png'
     ]
   },
+{
+    id: 'SyncStudy',
+
+    title: 'SyncStudy',
+
+    year: '2026',
+
+    featured: false,
+
+    description: 'An AI-powered study platform that transforms school materials into organized study notes, flashcards, practice quizzes, and personalized AI tutoring.',
+
+    tags: ['AI', 'Web Development', 'Education', 'JavaScript'],
+
+    url: '#',
+
+    github: 'https://github.com/Khush5476/StudySync',
+
+    overview: 'SyncStudy is an AI-powered study platform designed to help students turn their school materials into useful study resources. Users can upload a PDF containing notes, slides, or other learning materials, which the AI analyzes and transforms into concise and organized study notes. The platform also generates interactive flashcards for active recall, AI-generated practice quizzes designed to feel like real tests, and an AI tutor that can answer questions using the student’s study material. The project is currently under development, with plans to expand its study tools and add features such as progress tracking, smarter review, and personalized learning.',
+
+    features: [
+        'Interactive flashcards with multiple-choice questions and retry rounds for incorrect answers',
+
+        'AI-generated practice quizzes with application, numerical, and test-style questions',
+
+        'AI study tutor that answers questions based on the student’s study material',
+
+        'LaTeX and MathJax support for displaying mathematical formulas'
+        // 'PDF upload and processing system using a Node.js backend and Gemini AI'
+
+    ],
+
+    images: [
+        'SyncStudy-preview.png',
+        'Feature List.png'
+    ]
+},
   {
     id: 'ecommerce-admin-viewer',
     title: 'E-commerce Admin + User',
@@ -372,7 +408,7 @@ selection.forEach((project, index) => {
 
     card.innerHTML = `
       ${isGold ? `<span class="badge active featured-tag">Featured</span>` : ''}
-      ${['ecommerce-admin-viewer', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery', 'robotic-hand', 'portfolio-website'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
+      ${['ecommerce-admin-viewer', 'SyncStudy', 'spotify-clone', 'myapp', 'mini-bot', 'ai-face-tracker', 'photo-gallery', 'robotic-hand', 'portfolio-website'].includes(project.id) ? `<img class="project-card-image${project.id === 'myapp' ? ' project-card-image-top' : ''}" src="${project.images[0]}" alt="${project.title} preview" />` : ''}
       <div class="project-card-top">
         <span class="project-label">${isGold ? 'Final Specs' : 'Project'}</span>
         <span>
@@ -746,6 +782,7 @@ function initProjectDetailPage() {
   projectDetailGallery.classList.toggle('todo-gallery', selectedProject.id === 'myapp');
   projectDetailGallery.classList.toggle('ecommerce-gallery', selectedProject.id === 'ecommerce-admin-viewer');
   projectDetailGallery.classList.toggle('spotify-clone-gallery', selectedProject.id === 'spotify-clone');
+  projectDetailGallery.classList.toggle('SyncStudy-gallery', selectedProject.id === 'SyncStudy');
   projectDetailGallery.classList.toggle('photo-gallery-layout', selectedProject.id === 'photo-gallery');
   projectDetailGallery.classList.toggle('portfolio-website-layout', selectedProject.id === 'portfolio-website');
   projectDetailGallery.classList.toggle('robotic-hand-layout', selectedProject.id === 'robotic-hand');

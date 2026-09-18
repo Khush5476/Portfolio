@@ -1066,6 +1066,17 @@ body {
   object-fit: contain;
   border: 0;
 }
+/* Spotify Clone - stacked images on the left */
+.project-detail-gallery.SyncStudy-gallery {
+  grid-template-columns: 1fr;
+}
+
+.project-detail-gallery.SyncStudy-gallery img {
+  height: 480px;
+  min-height: 0;
+  object-fit: contain;
+  border: 0;
+}
 
 /* Photo Gallery - stacked images on the left */
 .project-detail-gallery.photo-gallery-layout {
@@ -3756,6 +3767,7 @@ body {
   .project-detail-gallery.spotify-clone-gallery,
   .project-detail-gallery.photo-gallery-layout,
   .project-detail-gallery.portfolio-website-layout,
+  .project-detail-gallery.SyncStudy-gallery,
   .project-detail-gallery.robotic-hand-layout {
     grid-template-columns: 1fr;
   }
@@ -3766,6 +3778,7 @@ body {
   .project-detail-gallery.spotify-clone-gallery img,
   .project-detail-gallery.photo-gallery-layout img,
   .project-detail-gallery.portfolio-website-layout img,
+  .project-detail-gallery.SyncStudy-gallery img,
   .project-detail-gallery.robotic-hand-layout img {
     height: auto;
     min-height: 0;
