@@ -203,7 +203,7 @@ const projects = [
 
     tags: ['AI', 'Web Development', 'Education', 'JavaScript'],
 
-    url: '#',
+    url: 'https://studysynchq.vercel.app/',
 
     github: 'https://github.com/Khush5476/StudySync',
 
